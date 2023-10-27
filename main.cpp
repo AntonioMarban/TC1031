@@ -19,18 +19,21 @@ int main() {
     //  cin.get(expression, MAX); // Receives string input and stores it in the expression variable
 
     char * expressionPointer = expression; // Makes a char type pointer that is set to the expression which is a char[]
-    cout << *expressionPointer << "      *expressionPointer" << endl;
-    cout << expressionPointer << "     expressionPointer" << endl;
+    cout << *expressionPointer << " esto es lo que pushea cuando pongo *expressionPointer" << endl; // flags
+    cout << expressionPointer << "  esto es lo que pushea cuando pongo expressionPointer" << endl; // flags porque no entiendo qp con el error
 
     TStack <char> *stack = new TStack<char>(); // Creates stack object
 
     int counter = 0; // counter that iterates over expression
 
+    char * pointer = &expression[counter];
+    cout << pointer << "POINTER========" << endl; // PROBANDO COSAS?!?!? ME IMPRIME OTRA VEZ LA CADENA COMPLETA
+
     while (*expressionPointer) { // Traverses our string
         cout << *expressionPointer;
         if (*expressionPointer == '(' || *expressionPointer == '[' || *expressionPointer == '{') { // If it encounters opening symbol
             stack->push(*expressionPointer); // ERROR HERE argument of type "char" is incompatible with parameter of type "char *"
-            cout << "\n========" << stack->stacktop() << "=====\n";
+            cout << "\n========" << stack->stacktop() << "=====\n"; // ?!?!??! wtf por que me imprime la cadena completa?!?!?!?!?!?
         }
         if (*expressionPointer == ')' || *expressionPointer == ']' || *expressionPointer == '}') { // If it encounters closing symbol
             if (stack->empty()) { // Checks if our stack is empty
