@@ -2,6 +2,8 @@
 #include "List.h"
 
 using namespace std;
+#ifndef __TSTACK_H__
+#define __TSTACK_H__
 
 template <class T>
 class TStack { 
@@ -40,3 +42,5 @@ T *TStack<T>::stacktop() {
 	if (lista->isEmpty()) return NULL;
   return lista->getLast()->getInfo();
 }
+
+#endif
