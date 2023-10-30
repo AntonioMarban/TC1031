@@ -9,8 +9,8 @@
 using namespace std;
 #include "Node.h"
 
-// Clase lista que contiene los metodos para agregar, eliminar, buscar, reemplazar, etc. manipulando los nodos
-// de la clase nodo para crear una lista ligada.
+// Clase lista que contiene los metodos para agregar, eliminar, buscar, reemplazar, etc.
+// Manipulando los nodos de la clase nodo para crear una lista ligada.
 
 // Declaración de la lista
 template <class T>
