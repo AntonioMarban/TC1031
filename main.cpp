@@ -24,16 +24,15 @@ int main() {
 
     TStack <char> *stack = new TStack<char>(); // Creates stack object
 
-    int counter = 0; // counter that iterates over expression
-
-    char * pointer = &expression[counter];
-    cout << pointer << "POINTER========" << endl; // PROBANDO COSAS?!?!? ME IMPRIME OTRA VEZ LA CADENA COMPLETA
+    char expressionArray[MAX];
+    int expressionArrayIndex = 0; // Needed to make the push() function parameters work
 
     while (*expressionPointer) { // Traverses our string
         cout << *expressionPointer;
         if (*expressionPointer == '(' || *expressionPointer == '[' || *expressionPointer == '{') { // If it encounters opening symbol
-            stack->push(*expressionPointer); // ERROR HERE argument of type "char" is incompatible with parameter of type "char *"
-            cout << "\n========" << stack->stacktop() << "=====\n"; // ?!?!??! wtf por que me imprime la cadena completa?!?!?!?!?!?
+            expressionArray[expressionArrayIndex] = *expressionPointer; // Sets current index on expressionArray to what the pointer is pointing to
+            stack->push(&expressionArray[expressionArrayIndex]); 
+            expressionArrayIndex++; // 
         }
         if (*expressionPointer == ')' || *expressionPointer == ']' || *expressionPointer == '}') { // If it encounters closing symbol
             if (stack->empty()) { // Checks if our stack is empty
@@ -46,19 +45,18 @@ int main() {
                 cout << "llegue aqui";
                 cout << *popped;
                 switch(*expressionPointer) { 
-                    case ')': if (*popped != '(') {valid = false;} // If the closing symbol is a ')' but the popped element isn't a '('
+                    case ')': if (*popped != '(') valid = false; // If the closing symbol is a ')' but the popped element isn't a '('
                     break; 
-                    case ']': if (*popped != '[') {valid = false;} // it becomes an invalid expression
+                    case ']': if (*popped != '[') valid = false; // it becomes an invalid expression
                     break;
-                    case '}': if (*popped != '{') {valid = false; cout << "it's a {}";} // Same process for all the other symbols
+                    case '}': if (*popped != '{') valid = false; // Same process for all the other symbols
                     break; 
                 }
             }
         }
         expressionPointer++;
-        cout << counter << endl;
     }
-    cout << "\nWhile finished" << endl;
+    cout << "\nWhile closed." << endl;
     if (!stack->empty()) { // If by the time we finish traversing the string, our stack is NOT empty
         valid = false; // Then it is an invalid expression, because there is an opening symbol waiting to be closed (and therefore, popped)
     }
