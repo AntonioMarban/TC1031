@@ -39,7 +39,7 @@ T *TStack<T>::pop(){
   }     
   T *elem = lista->getLast()->getInfo();				
   lista->removeAt(--size);
-  cout << "\nElement popped. New Size: " << size << endl;
+  // cout << "\nElement popped. New Size: " << size << endl;
   return elem;
 }
 
@@ -47,8 +47,8 @@ template <class T>
 void TStack<T>::push(T *val) {
 	lista->add(val);
   size++;
-  cout << "\nElement pushed. New Size: " << size << endl;
-  cout << "\nThis is at the top of the stack now: " << lista->getLast()->getInfo() << endl;
+  // cout << "\nElement pushed. New Size: " << size << endl;
+  // cout << "\nThis is at the top of the stack now: " << lista->getLast()->getInfo() << endl;
 }
 
 template <class T>

@@ -12,8 +12,7 @@ using namespace std;
 #define MAX 200
 
 int main() {
-    char expression[MAX];
-    // char expression[MAX] = "[{A+B + (a+b) a+b }]"; // Creates string variable that will store the mathematic expression
+    char expression[MAX]; // Creates string variable that will store the mathematic expression
     bool valid = true; // Boolean variable that checks if our expression is valid
    
     cout << "Please enter a mathematic expression to validate its parentheses use." << endl;
@@ -24,18 +23,12 @@ int main() {
     char * expressionPointer = expression; // Makes a char type pointer that is set to the expression which is a char[]
 
     TStack <char> *stack = new TStack<char>(); // Creates stack object
-
-    char expressionArray[MAX];
-    int index = 0; // Needed to make the push() function parameters work
-
     while (*expressionPointer) { // Traverses our string
-        cout << *expressionPointer;
+        cout << *expressionPointer; // Prints as it reads
         if (*expressionPointer == '(' || *expressionPointer == '[' || *expressionPointer == '{') { // If it encounters opening symbol
-            cout << "\n\nOPENING SYMBOL" << endl;
-            expressionArray[index] = *expressionPointer; // Sets current index on expressionArray to what the pointer is pointing to
-            stack->push(&expressionArray[index]);
-            index++; // 
-            cout << "\n>>>";
+            cout << "\n\nOPENING SYMBOL DETECTED: " << *expressionPointer << endl;
+            stack->push(expressionPointer); // Pushes the opening symbol
+            cout << "\n>>>"; 
         }
         if (*expressionPointer == ')' || *expressionPointer == ']' || *expressionPointer == '}') { // If it encounters closing symbol
             cout << "\n\nCLOSING SYMBOL DETECTED: " << *expressionPointer << endl;
@@ -45,7 +38,6 @@ int main() {
             }
             else { // If it is not empty
                 cout << "\nSTACK NOT EMPTY\n";
-                cout << "\nTHIS IS AT THE TOP OF THE STACK (TO BE POPPED): " << stack->stacktop() << endl;
                 char popped = *stack->pop(); // Pops the top element
                 cout << "\nTHIS IS THE POPPED ELEMENT: " << popped << endl;
                 // cout << "\nTHIS IS AT THE TOP OF THE STACK NOW: " << stack->stacktop() << endl;
@@ -57,19 +49,19 @@ int main() {
                 // Same process for all the other symbols
                 switch(*expressionPointer) { 
                     case ')': if (popped != '(') {
-                        cout << "\nPOPPED ELEMENT DOES NOT MATCH STACKTOP ELEMENT" << endl; 
+                        cout << "\nCLOSING SYMBOL DOES NOT MATCH OPENING SYMBOL" << endl; 
                         valid = false;
-                    } else cout << "\nPOPPED ELEMENT MATCHES STACKTOP ELEMENT" << endl;
+                    } else cout << "\nCLOSING SYMBOL MATCHES OPENING SYMBOL" << endl;
                     break; 
                     case ']': if (popped != '[') {
-                        cout << "\nPOPPED ELEMENT DOES NOT MATCH STACKTOP ELEMENT" << endl; 
+                        cout << "\nCLOSING SYMBOL DOES NOT MATCH OPENING SYMBOL" << endl; 
                         valid = false; 
-                    } else cout << "\nPOPPED ELEMENT MATCHES STACKTOP ELEMENT" << endl;
+                    } else cout << "\nCLOSING SYMBOL MATCHES OPENING SYMBOL" << endl;
                     break;
                     case '}': if (popped != '{') {
-                        cout << "\nPOPPED ELEMENT DOES NOT MATCH STACKTOP ELEMENT" << endl; 
+                        cout << "\nCLOSING SYMBOL DOES NOT MATCH OPENING SYMBOL" << endl; 
                         valid = false;
-                    } else cout << "\nPOPPED ELEMENT MATCHES STACKTOP ELEMENT" << endl;
+                    } else cout << "\nCLOSING SYMBOL MATCHES OPENING SYMBOL" << endl;
                     break; 
                 }
             }
