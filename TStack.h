@@ -12,6 +12,7 @@ class TStack {
     int size;		
   public:
   	TStack() { lista = new List<T>(); size = 0; }
+    virtual ~TStack() {}
     virtual bool empty();
   	virtual T *pop();
     virtual void push(T *val);
@@ -25,9 +26,13 @@ bool TStack<T>::empty() {
 
 template <class T>                          
 T *TStack<T>::pop(){						
-	if (lista->isEmpty()) return NULL;       
+	if (lista->isEmpty()) {
+    cout << "\nStack Underflow" << endl;
+    return NULL;
+  }     
   T *elem = lista->getLast()->getInfo();				
-  lista->removeAt(--size);					
+  lista->removeAt(--size);
+  cout << "\nElement popped. New Size: " << size << endl;
   return elem;
 }
 
@@ -35,11 +40,16 @@ template <class T>
 void TStack<T>::push(T *val) {
 	lista->add(val);
   size++;
+  cout << "\nElement pushed. New Size: " << size << endl;
+  cout << "\nThis is at the top of the stack now: " << lista->getLast()->getInfo() << endl;
 }
 
 template <class T>
 T *TStack<T>::stacktop() {
-	if (lista->isEmpty()) return NULL;
+	if (lista->isEmpty()) {
+    cout << "\nStack Underflow" << endl;
+    return NULL;
+  }
   return lista->getLast()->getInfo();
 }
 

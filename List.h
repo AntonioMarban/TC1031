@@ -17,6 +17,7 @@ template <class T>
 class List{
 public:
     List(){first=NULL;}
+    virtual ~List() {}
     virtual void add(T *value);
     virtual Node<T> *getFirst() const;
     virtual Node<T> *getLast();
@@ -60,8 +61,8 @@ Node<T> *List<T>::getLast() { // Getter que manda el ultimo elemento de la lista
     if (isEmpty()) return NULL;
 
     Node<T> *p = first;
-    while (p-> getSig()!=NULL){
-        p = p -> getSig();
+    while (p->getSig()!=NULL){
+        p = p->getSig();
     }
     return p;
 }
@@ -98,21 +99,22 @@ bool List<T>::elementExist(T *value){ // Devuelve true o false para saber si exi
 }
 
 template <class T>
-bool List<T>::removeAt(int index){ // Remueve un objeto pero ahora recibe de parametro la posición dentro de la lista. Primero revisa si esa posicion existe y luego la elimina. Devuelve true si se pudo, false si no se pudo.
+bool List<T>::removeAt(int index){
     Node<T> *node = getFirst();
     Node<T> *previous = NULL;
     int contador = 0;
     while (node != NULL) {
-        if (contador == index){
-            if (previous == NULL){
+        if (contador == index) {
+            if (previous == NULL) {
                 first = node->getSig();
             } else {
                 previous->setSig(node->getSig());
             }
-            delete previous;
+            delete node; // <-- Delete the current node, not the previous one
             return true;
         }
-        contador ++;
+
+        contador++;
         previous = node;
         node = node->getSig();
     }

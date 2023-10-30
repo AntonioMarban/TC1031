@@ -18,7 +18,7 @@ class Node {
 public:
     Node(T *info, Node<T> *sig, Node<T> *ant);
     Node(T *info);
-    ~Node() {};
+    virtual ~Node() {};
     virtual void setSig(Node<T> *sig);
     virtual void setAnt(Node<T> *ant);
     virtual void setInfo(T *info);
