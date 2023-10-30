@@ -1,3 +1,10 @@
+//
+// Antonio Marbán Regalado - A01424831
+// 29/10/2023
+// TStack object using a linked list
+//
+
+
 #include <iostream>
 #include "List.h"
 

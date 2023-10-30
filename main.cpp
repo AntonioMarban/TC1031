@@ -1,6 +1,8 @@
 //
-//     Antonio Marbán Regalado
-//    Actividad 2.3 - A01424831
+// Antonio Marbán Regalado - A01424831
+// 29/10/2023
+// Act 2.3
+// Stack Implementation to validate the correct use of parentheses in a mathematical expression
 //
 
 #include <iostream>
@@ -10,13 +12,14 @@ using namespace std;
 #define MAX 200
 
 int main() {
-    char expression[MAX] = "[{A+B + (a+b) a+b }]"; // Creates string variable that will store the mathematic expression
+    char expression[MAX];
+    // char expression[MAX] = "[{A+B + (a+b) a+b }]"; // Creates string variable that will store the mathematic expression
     bool valid = true; // Boolean variable that checks if our expression is valid
    
     cout << "Please enter a mathematic expression to validate its parentheses use." << endl;
     cout << ">>>";
 
-    //  cin.get(expression, MAX); // Receives string input and stores it in the expression variable
+    cin.get(expression, MAX); // Receives string input and stores it in the expression variable
 
     char * expressionPointer = expression; // Makes a char type pointer that is set to the expression which is a char[]
 

@@ -1,7 +1,7 @@
 //
 // Antonio Marbán Regalado - A01424831
 // 11/10/2023
-// 
+// Linked list object
 //
 
 #include <iostream>
